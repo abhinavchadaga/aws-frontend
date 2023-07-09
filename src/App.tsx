@@ -1,10 +1,16 @@
 import { ThemeProvider } from './ThemeProvider';
-import { Welcome } from './Welcome/Welcome';
+import Content from './components/Content';
+import { Header } from './components/Header';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <Welcome />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <Header />
+        <Content />
+      </ThemeProvider>
+    </Provider>
   );
 }
