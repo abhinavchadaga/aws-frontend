@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import stageSlice from './slices/stageSlice';
-import trainingConfigSlice from './slices/trainingConfigSlice';
+import stageReducer from './slices/stageSlice';
+import trainingConfigReducer from './slices/trainingConfigSlice';
 
 export const store = configureStore({
   reducer: {
-    stage: stageSlice,
-    trainingConfig: trainingConfigSlice,
+    stage: stageReducer,
+    trainingConfig: trainingConfigReducer,
   },
 });
 

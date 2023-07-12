@@ -12,6 +12,10 @@ import { notifications } from '@mantine/notifications';
 import { useRef } from 'react';
 import { useAppDispatch } from '../redux/hooks';
 import { setStage } from '../redux/slices/stageSlice';
+import {
+  TrainingConfigState,
+  setTrainingConfig,
+} from '../redux/slices/trainingConfigSlice';
 
 export default function ConfigureTraining() {
   const dispatch = useAppDispatch();
@@ -58,7 +62,9 @@ export default function ConfigureTraining() {
           color: 'green',
           autoClose: 2000,
         });
-        console.log(res.data);
+        dispatch(
+          setTrainingConfig(res.data.trainingConfig as TrainingConfigState),
+        );
       })
       .catch((error: Error | AxiosError) => {
         let message = 'error configuring training';

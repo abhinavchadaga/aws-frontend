@@ -4,14 +4,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 export type ModelArch = 'alexnet' | 'resnet' | 'vgg';
 
 export type TrainingConfigState = {
-  architecture: ModelArch | null;
-  maxEpochs: number | null;
-  learningRate: number | null;
+  modelArch: ModelArch | null;
+  numEpochs: string | null;
+  learningRate: string | null;
 };
 
 const initialState: TrainingConfigState = {
-  architecture: null,
-  maxEpochs: null,
+  modelArch: null,
+  numEpochs: null,
   learningRate: null,
 };
 
@@ -20,8 +20,8 @@ export const trainingConfigSlice = createSlice({
   initialState,
   reducers: {
     setTrainingConfig: (state, action: PayloadAction<TrainingConfigState>) => {
-      state.architecture = action.payload.architecture;
-      state.maxEpochs = action.payload.maxEpochs;
+      state.modelArch = action.payload.modelArch;
+      state.numEpochs = action.payload.numEpochs;
       state.learningRate = action.payload.learningRate;
     },
   },
