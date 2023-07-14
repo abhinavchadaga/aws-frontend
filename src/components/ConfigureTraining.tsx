@@ -19,8 +19,8 @@ import {
 
 export default function ConfigureTraining() {
   const dispatch = useAppDispatch();
-  const modelSelectRef = useRef<HTMLSelectElement>(null);
-  const epochsInputRef = useRef<HTMLInputElement>(null);
+  const modelArchSelectRef = useRef<HTMLSelectElement>(null);
+  const maxEpochsInputRef = useRef<HTMLInputElement>(null);
   const learningRateInputRef = useRef<HTMLInputElement>(null);
 
   const handleBack = () => {
@@ -36,8 +36,8 @@ export default function ConfigureTraining() {
   };
 
   const handleSubmit = () => {
-    const modelArch = modelSelectRef.current?.value ?? 'alexnet';
-    const numEpochs = epochsInputRef.current?.value ?? '10';
+    const modelArch = modelArchSelectRef.current?.value ?? 'alexnet';
+    const maxEpochs = maxEpochsInputRef.current?.value ?? '10';
     const learningRate = learningRateInputRef.current?.value ?? '0.00005';
 
     axios
@@ -45,7 +45,7 @@ export default function ConfigureTraining() {
         'http://localhost:3000/configure-training',
         {
           modelArch,
-          numEpochs,
+          maxEpochs,
           learningRate,
         },
         {
@@ -55,7 +55,7 @@ export default function ConfigureTraining() {
         },
       )
       .then((res: AxiosResponse) => {
-        dispatch(setStage('training'));
+        dispatch(setStage('confirmationScreen'));
         notifications.show({
           id: 'successfully-configured-training',
           message: 'successfully configured training',
@@ -77,6 +77,7 @@ export default function ConfigureTraining() {
           color: 'red',
           autoClose: 2000,
         });
+        console.log(error);
       });
   };
 
@@ -91,14 +92,14 @@ export default function ConfigureTraining() {
       <Stack spacing="md">
         <Title order={3}>Configure Training Options</Title>
         <NativeSelect
-          ref={modelSelectRef}
+          ref={modelArchSelectRef}
           data={['alexnet', 'resnet', 'vgg']}
           defaultValue="alexnet"
           label="Model Architecture"
           description="Select the model architecture to fine-tune"
         />
         <NumberInput
-          ref={epochsInputRef}
+          ref={maxEpochsInputRef}
           defaultValue={10}
           label="Max Epochs"
           description="Maximum number of epochs to fine-tune for"
@@ -107,6 +108,7 @@ export default function ConfigureTraining() {
           ref={learningRateInputRef}
           defaultValue={0.00005}
           precision={5}
+          step={0.00001}
           label="Learning Rate"
           description="Scientific notation is supported (e.g. 3e-5)"
         />

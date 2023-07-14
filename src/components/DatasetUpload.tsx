@@ -57,7 +57,7 @@ export default function DatasetUpload() {
 
   return (
     <>
-      <Flex direction="column">
+      <Flex direction="column" pt={100}>
         <FileButton resetRef={resetRef} onChange={setFile} accept=".zip">
           {({ onClick }) => {
             if (file == null) {

@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 export type Stage =
   | 'uploadDataset'
   | 'configureTraining'
-  | 'confirmSelections'
+  | 'confirmationScreen'
   | 'training'
   | 'results';
 

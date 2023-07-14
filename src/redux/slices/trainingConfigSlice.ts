@@ -5,13 +5,13 @@ export type ModelArch = 'alexnet' | 'resnet' | 'vgg';
 
 export type TrainingConfigState = {
   modelArch: ModelArch | null;
-  numEpochs: string | null;
+  maxEpochs: string | null;
   learningRate: string | null;
 };
 
 const initialState: TrainingConfigState = {
   modelArch: null,
-  numEpochs: null,
+  maxEpochs: null,
   learningRate: null,
 };
 
@@ -21,7 +21,7 @@ export const trainingConfigSlice = createSlice({
   reducers: {
     setTrainingConfig: (state, action: PayloadAction<TrainingConfigState>) => {
       state.modelArch = action.payload.modelArch;
-      state.numEpochs = action.payload.numEpochs;
+      state.maxEpochs = action.payload.maxEpochs;
       state.learningRate = action.payload.learningRate;
     },
   },
