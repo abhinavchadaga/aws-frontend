@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export type Stage =
   | 'uploadDataset'
   | 'configureTraining'
   | 'confirmationScreen'
   | 'training'
-  | 'results';
+  | 'downloadTrainedModel';
 
 export interface StageState {
   stage: Stage;

@@ -1,6 +1,9 @@
 import { Container, Progress, Stack, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
+import { setStage } from '../redux/slices/stageSlice';
+import { useAppDispatch } from '../redux/hooks';
+
 type TrainingStatus =
   | 'not started'
   | 'started'
@@ -18,6 +21,7 @@ interface TrainingProgress {
 }
 
 export default function TrainingProgress() {
+  const dispatch = useAppDispatch();
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState<TrainingStatus>('not started');
 
@@ -35,6 +39,7 @@ export default function TrainingProgress() {
       if (update.status === 'complete' || update.status === 'error') {
         console.log('closing event source');
         eventSource.close();
+        dispatch(setStage('downloadTrainedModel'));
       }
     };
   }, []); // Empty dependency array to run the effect only once
