@@ -1,8 +1,3 @@
-# Mantine + Vite template
+## AWS-Frontend
 
-Official [Mantine](https://mantine.dev/) + [Vite](https://vitejs.dev/) template.
-
-Links:
-
-- [Mantine documentation](https://mantine.dev/)
-- [Vite documentation](https://vitejs.dev/)
+Front end code for AWS - Abhinav Web Services. Written in Typescript using React, Mantine, and Redux Toolbox.
